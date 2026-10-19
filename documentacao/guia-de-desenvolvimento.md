@@ -30,37 +30,44 @@ A pasta `.venv/` não entra no versionamento. Ela contém apenas ferramentas do 
 
 ## Verificações do autor
 
-Sintaxe de todos os arquivos Python acompanhados:
+Execute os três comandos na raiz do repositório, com o ambiente virtual ativado.
+
+Sintaxe, com `compileall` da biblioteca padrão:
 
 ```bash
 python -m compileall -q capitulos ferramentas testes
 ```
 
-Testes existentes:
+Testes existentes, com `unittest` por meio do executor central:
 
 ```bash
 python ferramentas/executar_testes.py
 ```
 
-Qualidade com Ruff, na versão fixada em `ferramentas/requirements-desenvolvimento.txt`:
+O executor procura `teste_*.py` em `capitulos/capitulo-NN/testes/` e em `testes/`. Sem arquivos de teste, a saída é `Nenhum teste foi encontrado.` e o comando termina sem declarar aprovação.
+
+Qualidade com o Ruff, na versão fixada em `ferramentas/requirements-desenvolvimento.txt`:
 
 ```bash
 python -m ruff check .
 ```
 
-A formatação do Ruff é opcional:
+O `pyproject.toml` usa Python 3.13 como referência e seleciona somente as regras `E4`, `E7`, `E9` e `F`: erros de importação, de comando, de execução e falhas como nome indefinido ou importação sem uso. Comprimento de linha, tipagem, docstrings e avisos de estilo ficam de fora.
+
+A formatação também está configurada, para uso do autor, e atua somente sobre arquivos Python:
 
 ```bash
+python -m ruff format --check .
 python -m ruff format .
 ```
 
-O Ruff está configurado em `pyproject.toml` com as famílias E, F e W. Tipagem obrigatória, docstrings obrigatórias e reescritas automáticas para construções avançadas ficam desligadas. Linhas longas de texto didático não reprovam a verificação.
+O primeiro comando apenas informa divergências. O segundo reescreve os arquivos. A formatação não entra na integração contínua. Um exemplo do livro permanece como foi escrito para a leitura quando a forma automática prejudicar a compreensão.
 
-Quem estuda não precisa instalar nem executar o Ruff.
+Quem estuda executa os programas com o Python da própria máquina. Ruff, GitHub Actions e o ambiente virtual não fazem parte dessa execução.
 
 ## Integração contínua
 
-O arquivo `.github/workflows/validacao.yml` roda em push e pull request. Ele verifica a sintaxe, executa os testes encontrados e roda o Ruff. Não usa segredos, não publica pacote e não cria release.
+O arquivo `.github/workflows/validacao.yml` roda em push e pull request. Ele executa `compileall`, `ferramentas/executar_testes.py` e `ruff check`. Não usa segredos, não publica pacote e não cria release.
 
 Enquanto não houver testes, a etapa correspondente informa que nenhum teste foi encontrado.
 

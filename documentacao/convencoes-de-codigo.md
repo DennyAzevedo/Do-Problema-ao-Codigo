@@ -45,9 +45,9 @@ Escolha nomes do domínio do problema. Um exemplo sobre compra usa `preco` e `de
 
 ## Ferramentas do autor
 
-O Ruff verifica o código durante o desenvolvimento. A configuração está em `pyproject.toml` e usa apenas regras compatíveis com exemplos introdutórios. Quem estuda o livro não precisa executá-lo.
+O Ruff verifica o código durante o desenvolvimento. A configuração está em `pyproject.toml` e seleciona as regras `E4`, `E7`, `E9` e `F`. Quem estuda o livro não precisa executá-lo.
 
-A formatação automática é opcional. O critério obrigatório do autor é `ruff check`, descrito no guia de desenvolvimento.
+A formatação automática fica disponível para o autor e não altera um exemplo quando a forma resultante prejudica a leitura. Os comandos estão no guia de desenvolvimento.
 
 ## Editores
 

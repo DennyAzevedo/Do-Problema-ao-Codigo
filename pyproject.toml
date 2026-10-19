@@ -6,17 +6,14 @@
 required-version = "0.17.1"
 target-version = "py313"
 line-length = 100
+include = ["*.py"]
 extend-exclude = [".venv", ".git"]
 
 [tool.ruff.lint]
-# Regras conservadoras: erros, falhas objetivas e avisos básicos.
-# Tipagem, docstrings obrigatórias, modernização automática e complexidade
-# ficam de fora para não constranger exemplos introdutórios.
-select = ["E", "F", "W"]
-ignore = [
-    # Textos didáticos e mensagens ao leitor podem ultrapassar o limite.
-    "E501",
-]
+# Defeitos objetivos: importação, comandos, erros de execução e nomes indefinidos.
+# Comprimento de linha, tipagem, docstrings e avisos de estilo ficam de fora
+# para preservar a leitura dos exemplos introdutórios.
+select = ["E4", "E7", "E9", "F"]
 
 [tool.ruff.format]
 quote-style = "double"
