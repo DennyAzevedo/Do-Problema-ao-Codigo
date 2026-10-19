@@ -1,0 +1,26 @@
+# Ambiente virtual local do autor
+.venv/
+
+# Bytecode Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Caches de ferramentas
+.pytest_cache/
+.ruff_cache/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.swp
+*~
+.DS_Store
+
+# Configurações locais sensíveis
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+segredos/

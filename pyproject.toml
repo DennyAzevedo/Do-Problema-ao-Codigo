@@ -1,0 +1,24 @@
+# Ferramentas do autor e de colaboradores.
+# Este arquivo não define um pacote Python instalável.
+# Os exemplos do livro devem permanecer executáveis com a biblioteca padrão.
+
+[tool.ruff]
+required-version = "0.17.1"
+target-version = "py313"
+line-length = 100
+extend-exclude = [".venv", ".git"]
+
+[tool.ruff.lint]
+# Regras conservadoras: erros, falhas objetivas e avisos básicos.
+# Tipagem, docstrings obrigatórias, modernização automática e complexidade
+# ficam de fora para não constranger exemplos introdutórios.
+select = ["E", "F", "W"]
+ignore = [
+    # Textos didáticos e mensagens ao leitor podem ultrapassar o limite.
+    "E501",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"

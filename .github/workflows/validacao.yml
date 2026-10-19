@@ -1,0 +1,33 @@
+name: Validação
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    name: Sintaxe, testes e qualidade
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter o código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13.11"
+
+      - name: Verificar a sintaxe Python
+        run: python -m compileall -q capitulos ferramentas testes
+
+      - name: Executar os testes existentes
+        run: python ferramentas/executar_testes.py
+
+      - name: Instalar o Ruff
+        run: python -m pip install -r ferramentas/requirements-desenvolvimento.txt
+
+      - name: Verificar a qualidade com o Ruff
+        run: python -m ruff check .

@@ -1,0 +1,3 @@
+# Dependências exclusivas do desenvolvimento do autor.
+# Não são necessárias para executar os exemplos do livro.
+ruff==0.17.1
